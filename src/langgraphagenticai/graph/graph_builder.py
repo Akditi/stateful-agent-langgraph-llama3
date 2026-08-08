@@ -20,7 +20,8 @@ class GraphBuilder:
         entry and exit point of the graph.
         """
 
-        self.basic_chatbot_node=BasicChatbotNode("chatbot", self.basic_chatbot_node.process)
+        basic_chatbot_node = BasicChatbotNode(self.llm)
+        self.graph_builder.add_node("chatbot", basic_chatbot_node.process)
         self.graph_builder.add_edge(START, "chatbot")
         self.graph_builder.add_edge("chatbot", END)
 
@@ -83,8 +84,5 @@ class GraphBuilder:
         if usecase == "AI News":
             self.ai_news_builder_graph()
 
-        return self.graph_builder.compile()
-
-
-        
+        return self.graph_builder.compile()     
 
