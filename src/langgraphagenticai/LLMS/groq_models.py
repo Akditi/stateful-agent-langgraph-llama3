@@ -5,7 +5,7 @@ GROQ_MODELS_URL = "https://api.groq.com/openai/v1/models"
 
 _EXCLUDE_KEYWORDS = ("whisper", "tts", "guard", "moderation", "embed")
 
-_FALLBACK_MODELS = ["llama-3-3-70b-versatile", "llama-3.1-8b-instant"]
+_FALLBACK_MODELS = ["llama-3.3-70b-versatile", "llama-3.1-8b-instant"]
 
 @st.cache_data(ttl=3600, show_spinner=False) 
 def get_groq_chat_models(api_key: str) -> list:
