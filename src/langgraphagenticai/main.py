@@ -52,7 +52,14 @@ def load_langgraph_agenticai_app():
                  print(user_message)
                  DisplayResultStreamlit(usecase,graph,user_message).display_result_on_ui()
             except Exception as e:
-                 st.error(f"Error: Graph set up failed- {e}")
+                 if "tool calling" in str(e).lower() or "tool_use_failed" in str(e).lower():
+                     st.error(
+                         "Error: The selected model doesn't support tool calling, which this "
+                         "use case requires. Please pick a different model from the dropdown "
+                         "(e.g. llama-3.3-70b-versatile or llama-3.1-8b-instant)."
+                     )
+                 else:
+                     st.error(f"Error: Graph set up failed- {e}")
                  return
 
         except Exception as e:
